@@ -9,11 +9,15 @@ async function insertUnique(movie: Movie):Promise<QueryResult<MovieEntity>> {
         `, [movie.name, movie.aplication, movie.genus, movie.stats])
     
     }
+    function findMany(): Promise<QueryResult<MovieEntity>> {
+        return connection.query(`SELECT * FROM movies`);
+         
+      }
 
     export {
        
         insertUnique,
-        /*findMany,
+        findMany,/*
         deleteMovieId,
         updateMovieId*/
     }

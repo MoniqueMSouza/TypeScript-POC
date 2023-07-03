@@ -19,11 +19,17 @@ async function deleteMovieId(movie: MovieEntity): Promise<QueryResult<MovieEntit
     )
 
 }
+async function updateMovieId(movie: MovieEntity): Promise<QueryResult<MovieEntity>> {
+    return connection.query(`
+    UPDATE movies SET stats=$1 WHERE id=$2`, [false, movie.id]
+    )
+
+}
 
 export {
 
     insertUnique,
     findMany,
-        deleteMovieId/*,
-        updateMovieId*/
+    deleteMovieId,
+    updateMovieId
 }

@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { movieSchema } from "../schemas/movie-schema";
-import { insertUnique, findMany, /*deleteMovieId, updateMovieId*/ } from "../repositories/movies.repositories";
-import { Movie} from "../protocols/movie";
+import { insertUnique, findMany, deleteMovieId/*, updateMovieId*/ } from "../repositories/movies.repositories";
+import { Movie, MovieEntity} from "../protocols/movie";
 
 
 async function insert(req: Request, res: Response) {
@@ -27,6 +27,14 @@ async function listAll(req: Request, res: Response) {
 async function updateMovie(req: Request, res: Response) {    
 }
 async function deleteMovie(req: Request, res: Response) {   
+    const id = req.body as MovieEntity
+
+    try{
+        const result = await deleteMovieId(id);
+        return res.send('Excluido!' + result)
+    }catch{
+        return res.sendStatus(500)
+    }
 }
 
 export {
